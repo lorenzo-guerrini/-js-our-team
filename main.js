@@ -34,18 +34,22 @@ const team = [
 //Variabile container
 let teamContainer = document.querySelector(".team-container");
 
-//Stampa tutto il team
+//Stampa tutto il team e afferma di averlo fatto
+let defaultTeamPrinted = false;
 defaultTeamPrint();
 
 //Crea una card per ciascun membro e lo aggiunge al teamContainer
 function defaultTeamPrint() {
   for (let i = 0; i < team.length; i++) {
-    let newCard = createCard(team[i].name, team[i].role, "img/" + team[i].image);
+    let newCard = createCard(team[i]);
     teamContainer.append(newCard);
   }
+
+  defaultTeamPrinted = true;
 }
 
-function createCard(name, role, image) {
+//Crea una card dato un oggetto teamMember
+function createCard(teamMember) {
   //Crea elemento team-card
   let newCard = document.createElement("div");
   newCard.classList.add("team-card");
@@ -54,8 +58,12 @@ function createCard(name, role, image) {
   let newCardImage = document.createElement("div");
   newCardImage.classList.add("card-image");
   let newImage = document.createElement("img");
-  newImage.src = image;
-  newImage.alt = name;
+  if (!defaultTeamPrinted) { //le immagini del default team sono nella cartella img, altre eventualmente no
+    newImage.src = "img/" + teamMember.image;
+  } else {
+    newImage.src = teamMember.image;
+  }
+  newImage.alt = teamMember.name;
 
   //Aggiunge i suddetti a card-image e questo a team-card
   newCardImage.append(newImage);
@@ -65,9 +73,9 @@ function createCard(name, role, image) {
   let newCardText = document.createElement("div");
   newCardText.classList.add("card-text");
   let newName = document.createElement("h3");
-  newName.innerHTML = name;
+  newName.innerHTML = teamMember.name;
   let newRole = document.createElement("p");
-  newRole.innerHTML = role;
+  newRole.innerHTML = teamMember.role;
 
   //Aggiunge i suddetti a card-text e questo a team-card
   newCardText.append(newName);
@@ -86,12 +94,16 @@ addButton.addEventListener("click", addFormCard)
 
 //Aggiunge al team-container card generate tramite il form
 function addFormCard() {
-  //Variabili con nome, ruolo e immagine prese dal form
-  let formName = document.getElementById("name").value;
-  let formRole = document.getElementById("role").value;
-  let formImage = document.getElementById("image").value;
-  
+  //Crea oggetto newMember e lo aggiunge all'array team
+  let newMember = {
+    name: document.getElementById("name").value,
+    role: document.getElementById("role").value,
+    image: document.getElementById("image").value,
+  }
+
+  team.push(newMember);
+
   //Crea nuova card con variabili precedenti e la appende al teamContainer
-  let newCard = createCard(formName, formRole, formImage);
+  let newCard = createCard(newMember);
   teamContainer.append(newCard);
 }
