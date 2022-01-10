@@ -77,3 +77,21 @@ function createCard(name, role, image) {
   //Ritorna team-card
   return newCard;
 }
+
+// ----   BONUS    -----
+
+//Variabile bottone add
+const addButton = document.getElementById("addMemberButton");
+addButton.addEventListener("click", addFormCard)
+
+//Aggiunge al team-container card generate tramite il form
+function addFormCard() {
+  //Variabili con nome, ruolo e immagine prese dal form
+  let formName = document.getElementById("name").value;
+  let formRole = document.getElementById("role").value;
+  let formImage = document.getElementById("image").value;
+  
+  //Crea nuova card con variabili precedenti e la appende al teamContainer
+  let newCard = createCard(formName, formRole, formImage);
+  teamContainer.append(newCard);
+}
