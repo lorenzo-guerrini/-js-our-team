@@ -34,19 +34,39 @@ const team = [
 //Variabile container
 let teamContainer = document.querySelector(".team-container");
 
-
-let newCardB = createCard();
+let newCardB = createCard("Giovanni Rana", "Tortellino", "img/angela-caroll-chief-editor.jpg");
 console.log(newCardB);
-teamContainer.append();
+teamContainer.append(newCardB);
 
-function createCard() {
-  //Crea team-card
+function createCard(name, role, image) {
+  //Crea elemento team-card
   let newCard = document.createElement("div");
   newCard.classList.add("team-card");
 
-  //Crea card-image e la aggiunge a team-card
+  //Crea elemento card-image e img contenuta
+  let newCardImage = document.createElement("div");
+  newCardImage.classList.add("card-image");
+  let newImage = document.createElement("img");
+  newImage.src = image;
+  newImage.alt = name;
 
-  //Crea card-text e lo aggiunge a team-card
+  //Aggiunge i suddetti a card-image e questo a team-card
+  newCardImage.append(newImage);
+  newCard.append(newCardImage);
 
+  //Crea card-text e h3 e p contenuti
+  let newCardText = document.createElement("div");
+  newCardText.classList.add("card-text");
+  let newName = document.createElement("h3");
+  newName.innerHTML = name;
+  let newRole = document.createElement("p");
+  newRole.innerHTML = role;
+
+  //Aggiunge i suddetti a card-text e questo a team-card
+  newCardText.append(newName);
+  newCardText.append(newRole);
+  newCard.append(newCardText);
+
+  //Ritorna team-card
   return newCard;
 }
