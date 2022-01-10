@@ -34,9 +34,16 @@ const team = [
 //Variabile container
 let teamContainer = document.querySelector(".team-container");
 
-let newCardB = createCard("Giovanni Rana", "Tortellino", "img/angela-caroll-chief-editor.jpg");
-console.log(newCardB);
-teamContainer.append(newCardB);
+//Stampa tutto il team
+defaultTeamPrint();
+
+//Crea una card per ciascun membro e lo aggiunge al teamContainer
+function defaultTeamPrint() {
+  for (let i = 0; i < team.length; i++) {
+    let newCard = createCard(team[i].name, team[i].role, "img/" + team[i].image);
+    teamContainer.append(newCard);
+  }
+}
 
 function createCard(name, role, image) {
   //Crea elemento team-card
