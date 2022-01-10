@@ -30,3 +30,23 @@ const team = [
     image: 'barbara-ramos-graphic-designer.jpg',
   },
 ];
+
+//Variabile container
+let teamContainer = document.querySelector(".team-container");
+
+
+let newCardB = createCard();
+console.log(newCardB);
+teamContainer.append();
+
+function createCard() {
+  //Crea team-card
+  let newCard = document.createElement("div");
+  newCard.classList.add("team-card");
+
+  //Crea card-image e la aggiunge a team-card
+
+  //Crea card-text e lo aggiunge a team-card
+
+  return newCard;
+}
