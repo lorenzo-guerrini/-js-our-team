@@ -103,7 +103,17 @@ function addFormCard() {
 
   team.push(newMember);
 
+  //Pulisce il form
+  clearForm()
+
   //Crea nuova card con variabili precedenti e la appende al teamContainer
   let newCard = createCard(newMember);
   teamContainer.append(newCard);
+}
+
+//Pulisce il form
+function clearForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("role").value = "";
+  document.getElementById("image").value = "";
 }
